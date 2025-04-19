@@ -8,28 +8,32 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository (full depth)
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          path: 'repo'  # Critical fix - isolates in subdirectory
 
-      # Debug step to verify files
-      - name: Verify repository contents
+      - name: Verify files
+        working-directory: ./repo
         run: |
+          echo "Current directory: $(pwd)"
           ls -la
-          echo "Package.json path: $(realpath package.json)"
-          echo "Contents:"
-          cat package.json || echo "No package.json found"
+          [ -f package.json ] || exit 1
 
       - name: Install dependencies
-        run: npm install
+        working-directory: ./repo
+        run: |
+          npm install
+          echo "Node version: $(node -v)"
+          echo "NPM version: $(npm -v)"
 
       - name: Build project
+        working-directory: ./repo
         run: npm run build
 
-      - name: Install Vercel CLI
-        run: npm install -g vercel
-
       - name: Deploy to Vercel
-        run: vercel --prod --token ${{ secrets.VERCEL_TOKEN }}
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        working-directory: ./repo
+        run: |
+          npm install -g vercel
+          vercel --prod --token ${{ secrets.VERCEL_TOKEN }}
