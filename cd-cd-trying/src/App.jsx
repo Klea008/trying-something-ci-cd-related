@@ -25,7 +25,7 @@ function App() {
       </div>
       
       <div className={`main-content ${glow ? 'glow' : ''}`}>
-        <h1 className="title">Hello People</h1>
+        <h1 className="title">Hello Trying again</h1>
         <p className="subtitle">Welcome to your awesome space!!!</p>
         
         <div className="hexagon-container">
