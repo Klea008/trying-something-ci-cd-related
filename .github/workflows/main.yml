@@ -13,23 +13,23 @@ jobs:
         run: |
           echo "Current directory: $(pwd)"
           ls -la
-          cd "cd-cd trying"
+          cd "cd-cd-trying"
           echo "Project directory: $(pwd)"
           ls -la
           
       - name: Install dependencies
-        working-directory: "./cd-cd trying"
+        working-directory: "./cd-cd-trying"
         run: |
           npm install
           echo "Node version: $(node -v)"
           echo "NPM version: $(npm -v)"
           
       - name: Build project
-        working-directory: "./cd-cd trying"
+        working-directory: "./cd-cd-trying"
         run: npm run build
         
       - name: Deploy to Vercel
-        working-directory: "./cd-cd trying"
+        working-directory: "./cd-cd-trying"
         run: |
           npm install -g vercel
           vercel --prod --token ${{ secrets.VERCEL_TOKEN }} --yes
