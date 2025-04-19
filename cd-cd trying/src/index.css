@@ -1,0 +1,189 @@
+/* App.css */
+.app-container {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-family: 'Arial', sans-serif;
+}
+
+.particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.particle {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  animation: float 15s infinite linear;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.main-content {
+  text-align: center;
+  z-index: 10;
+  transition: all 0.5s ease;
+}
+
+.main-content.glow {
+  text-shadow: 0 0 10px rgba(255, 105, 180, 0.8);
+}
+
+.title {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(45deg, #ff8a00, #e52e71, #00b4db);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradientShift 8s ease infinite;
+  background-size: 300% 300%;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  opacity: 0.8;
+}
+
+.hexagon-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 2rem 0;
+}
+
+.hexagon {
+  width: 60px;
+  height: 35px;
+  background-color: rgba(255, 255, 255, 0.1);
+  position: relative;
+  animation: pulse 2s infinite ease-in-out;
+}
+
+.hexagon:nth-child(1) { animation-delay: 0s; }
+.hexagon:nth-child(2) { animation-delay: 0.3s; }
+.hexagon:nth-child(3) { animation-delay: 0.6s; }
+
+.hexagon:before,
+.hexagon:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+}
+
+.hexagon:before {
+  bottom: 100%;
+  border-bottom: 17.5px solid rgba(255, 255, 255, 0.1);
+}
+
+.hexagon:after {
+  top: 100%;
+  width: 0;
+  border-top: 17.5px solid rgba(255, 255, 255, 0.1);
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+.cta-button {
+  position: relative;
+  padding: 12px 30px;
+  background: transparent;
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.cta-button:hover {
+  border-color: #e52e71;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.button-hover-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #ff8a00, #e52e71);
+  z-index: -1;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.cta-button:hover .button-hover-effect {
+  transform: translateX(0);
+}
+
+.corner-decoration {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.top-left {
+  top: 20px;
+  left: 20px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.top-right {
+  top: 20px;
+  right: 20px;
+  border-left: none;
+  border-bottom: none;
+}
+
+.bottom-left {
+  bottom: 20px;
+  left: 20px;
+  border-right: none;
+  border-top: none;
+}
+
+.bottom-right {
+  bottom: 20px;
+  right: 20px;
+  border-left: none;
+  border-top: none;
+}
