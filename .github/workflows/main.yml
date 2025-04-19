@@ -1,39 +1,35 @@
 name: Deploy to Vercel
-
 on:
   push:
     branches: [main]
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository (full depth)
+      - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          path: 'repo'  # Critical fix - isolates in subdirectory
-
-      - name: Verify files
-        working-directory: ./repo
+        
+      - name: Navigate to project directory
         run: |
           echo "Current directory: $(pwd)"
           ls -la
-          [ -f package.json ] || exit 1
-
+          cd "cd-cd trying"
+          echo "Project directory: $(pwd)"
+          ls -la
+          
       - name: Install dependencies
-        working-directory: ./repo
+        working-directory: "./cd-cd trying"
         run: |
           npm install
           echo "Node version: $(node -v)"
           echo "NPM version: $(npm -v)"
-
+          
       - name: Build project
-        working-directory: ./repo
+        working-directory: "./cd-cd trying"
         run: npm run build
-
+        
       - name: Deploy to Vercel
-        working-directory: ./repo
+        working-directory: "./cd-cd trying"
         run: |
           npm install -g vercel
           vercel --prod --token ${{ secrets.VERCEL_TOKEN }}
